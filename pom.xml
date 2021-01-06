@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.1.5.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>../Udacity-eCommerce/pom.xml</relativePath> <!-- lookup parent from repository -->
 	</parent>
 	
 	<groupId>com.example</groupId>
@@ -98,7 +98,7 @@
 	</dependencies>
 
 	<build>
-		<reporting>
+		
 			<plugins>
 				<plugin>
 					<groupId>org.springframework.boot</groupId>
@@ -113,7 +113,7 @@
 					</configuration>
 				</plugin>
 			</plugins>
-		</reporting> 
+		
 	</build>
 
 </project>
