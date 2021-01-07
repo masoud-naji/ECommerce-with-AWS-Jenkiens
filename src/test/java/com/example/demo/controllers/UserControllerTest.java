@@ -54,7 +54,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void verify_password_length_criteria(){
+    public void verify_password_length_criteria() throws Exception{
         CreateUserRequest r = new CreateUserRequest();
         r.setUsername("test");
         r.setPassword("abcde");
@@ -66,7 +66,7 @@ public class UserControllerTest {
 
 
     @Test
-    public void verify_confirm_password_criteria(){
+    public void verify_confirm_password_criteria() throws Exception{
         CreateUserRequest r = new CreateUserRequest();
         r.setUsername("test");
         r.setPassword("testPassword");
