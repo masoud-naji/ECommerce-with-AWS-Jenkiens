@@ -54,28 +54,43 @@ public class UserControllerTest {
     }
 
     @Test
-    public void verify_password_length_criteria(){
+    public void verify_password_length_check()throws Exception{
         CreateUserRequest r = new CreateUserRequest();
         r.setUsername("test");
         r.setPassword("abcde");
         r.setConfirmPassword("abcde");
 
         final ResponseEntity<User> response = userController.createUser(r);
+        assertNotNull(response);
         assertEquals(400, response.getStatusCodeValue());
     }
 
 
     @Test
-    public void verify_confirm_password_criteria(){
+    public void verify_confirm_password_check() throws Exception{
         CreateUserRequest r = new CreateUserRequest();
         r.setUsername("test");
         r.setPassword("testPassword");
         r.setConfirmPassword("testPassword1");
 
         final ResponseEntity<User> response = userController.createUser(r);
+        assertNotNull(response);
         assertEquals(400, response.getStatusCodeValue());
     }
 
+    @Test
+    public void not_found_user_by_name() {
+        final ResponseEntity<User> response = userController.findByUserName("anotherUser");
+        assertNotNull(response);
+        assertEquals(404, response.getStatusCodeValue());
+    }
+
+    @Test
+    public void not_found_user_by_id() {
+        final ResponseEntity<User> response = userController.findById(33L);
+        assertNotNull(response);
+        assertEquals(404, response.getStatusCodeValue());
+    }
     @Test
     public void verify_find_user_by_id(){
         final ResponseEntity<User> response = userController.findById(0L);
