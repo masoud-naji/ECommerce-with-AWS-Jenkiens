@@ -34,8 +34,8 @@ public class UserControllerTest {
         when(userRepo.findById(0L)).thenReturn(java.util.Optional.of(user));
         }
 
-
-   */ @Test
+/*
+    @Test
     public void create_user_happy_path() throws Exception{
         when(encoder.encode("testPassword")).thenReturn("thisisHashed");
         CreateUserRequest r = new CreateUserRequest();
@@ -77,7 +77,7 @@ public class UserControllerTest {
         assertNotNull(response);
         assertEquals(400, response.getStatusCodeValue());
     }
-    /*
+*/
 
     @Test
     public void not_found_user_by_name() {
