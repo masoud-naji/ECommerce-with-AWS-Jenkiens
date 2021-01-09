@@ -36,25 +36,38 @@ public class UserControllerTest {
 
 
     @Test
-    public void testCreateUser(){
-        when(encoder.encode("testPassword")).thenReturn("thisIsHashed");
+    public void create_user_happy_path() throws Exception{
+        when(encoder.encode("testPassword")).thenReturn("this is Hashed");
+        CreateUserRequest createUserRequest = new CreateUserRequest();
+        createUserRequest.setUsername("test");
+        createUserRequest.setPassword("testPassword");
+        createUserRequest.setConfirmPassword("testPassword");
 
-        CreateUserRequest request = new CreateUserRequest();
-        request.setUsername("test");
-        request.setPassword("testPassword");
-        request.setConfirmPassword("testPassword");
-
-        ResponseEntity<User> response = userController.createUser(request);
+        final ResponseEntity<User> response = userController.createUser(createUserRequest);
         assertNotNull(response);
         assertEquals(200, response.getStatusCodeValue());
 
         User user = response.getBody();
         assertNotNull(user);
-        assertEquals(0, user.getId());
+        assertEquals(0,user.getId());
         assertEquals("test", user.getUsername());
-        assertEquals("thisIsHashed", user.getPassword());
+        assertEquals("this is Hashed", user.getPassword());
+
     }
 
+    @Test
+    public void create_user_bad_request() throws Exception{
+        when(encoder.encode("testPassword")).thenReturn("this is Hashed");
+        CreateUserRequest createUserRequest = new CreateUserRequest();
+        createUserRequest.setUsername("test");
+        createUserRequest.setPassword("test");
+        createUserRequest.setConfirmPassword("testPassword");
+
+        final ResponseEntity<User> response = userController.createUser(createUserRequest);
+        assertNotNull(response);
+        assertEquals(400, response.getStatusCodeValue());
+
+    }
 
 
 /*    @Test
@@ -103,5 +116,16 @@ public class UserControllerTest {
         User user = response.getBody();
         assertEquals(0, user.getId());
     }
+
+    private ResponseEntity<User> createNewUser(){
+        CreateUserRequest createUserRequest = new CreateUserRequest();
+        createUserRequest.setUsername("test");
+        createUserRequest.setPassword("testPassword");
+        createUserRequest.setConfirmPassword("testPassword");
+                          
+        return userController.createUser(createUserRequest);
+    }
+
+
 
 }
