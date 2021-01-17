@@ -25,9 +25,9 @@ public class UserControllerTest {
     @Before
     public void setup(){
         userController =new UserController();
-        TestUtils.injectObjects(UserController,"userRepository",userRepo);
-        TestUtils.injectObjects(UserController,"cartRepository",cartRepo);
-        TestUtils.injectObjects(UserController,"bCryptPasswordEncoder",encoder);
+        TestUtils.injectObjects(userController,"userRepository",userRepo);
+        TestUtils.injectObjects(userController,"cartRepository",cartRepo);
+        TestUtils.injectObjects(userController,"bCryptPasswordEncoder",encoder);
 
         User user = new User();
         user.setId(0);
